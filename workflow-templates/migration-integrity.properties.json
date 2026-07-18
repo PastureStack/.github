@@ -1,0 +1,6 @@
+{
+  "name": "PastureStack migration integrity",
+  "description": "Verify full Git history, required clone-visible files, large files, and Git LFS objects after migration.",
+  "iconName": "octicon shield-check",
+  "categories": ["Code Quality"]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "PastureStack Go CI",
+  "description": "Run tests and go vet using the Go version declared by a module-aware repository.",
+  "iconName": "octicon check-circle",
+  "categories": ["Go", "Continuous integration"],
+  "filePatterns": ["^go\\.mod$"]
+}

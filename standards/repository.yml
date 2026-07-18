@@ -1,0 +1,47 @@
+schema: pasturestack/repository-standard/v1
+organization: PastureStack
+
+repository:
+  naming: lowercase-kebab-case
+  preferred_visibility: public
+  staging_visibility: private
+  default_branch:
+    import_strategy: preserve-source-default
+    steady_state: main
+
+required_files:
+  - README.md
+  - LICENSE
+
+history:
+  preserve_commits: true
+  preserve_published_tags: true
+  rewrite_published_history: false
+
+security:
+  organization_configuration: PastureStack-org-config-1
+  dependabot_grouped_security_updates: true
+  github_token_default: read
+  external_workflow_approval: all-external-contributors
+  private_vulnerability_reporting_for_maintained_public_repositories: true
+
+actions:
+  artifact_retention_days: 30
+  new_actions_pin: full-commit-sha
+  imported_workflows_initial_state: review-before-enable
+
+public_default_branch_rules:
+  pull_request_required: true
+  approving_reviews: 1
+  dismiss_stale_reviews: true
+  conversation_resolution: true
+  force_pushes: false
+  deletions: false
+  administrator_bypass: false
+  required_checks: add-after-check-names-stabilize
+
+release:
+  reuse_upstream_tags_for_rebuilds: false
+  checksums_required: true
+  source_commit_required: true
+  compatibility_notes_required: true

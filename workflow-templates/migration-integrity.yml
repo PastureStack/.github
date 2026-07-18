@@ -1,0 +1,69 @@
+name: PastureStack / Migration integrity
+
+on:
+  pull_request:
+  push:
+    branches:
+      - $default-branch
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: migration-integrity-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrity:
+    name: Repository integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          lfs: true
+          persist-credentials: false
+
+      - name: Verify Git object integrity
+        shell: bash
+        run: git fsck --full
+
+      - name: Verify required clone-visible files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -f README.md && ! -f README.rst && ! -f README ]]; then
+            echo "A clone-visible README is required." >&2
+            exit 1
+          fi
+          if [[ ! -f LICENSE && ! -f LICENSE.md && ! -f LICENSE.txt && ! -f COPYING ]]; then
+            echo "A repository license is required; organization defaults cannot supply one." >&2
+            exit 1
+          fi
+
+      - name: Reject files above GitHub's practical limit
+        shell: bash
+        run: |
+          set -euo pipefail
+          limit=$((95 * 1024 * 1024))
+          failed=0
+          while IFS= read -r -d '' file; do
+            [[ -f "$file" ]] || continue
+            size=$(stat -c '%s' -- "$file")
+            if (( size > limit )); then
+              printf 'Tracked file exceeds 95 MiB: %s (%s bytes)\n' "$file" "$size" >&2
+              failed=1
+            fi
+          done < <(git ls-files -z)
+          exit "$failed"
+
+      - name: Verify Git LFS objects when used
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .gitattributes ]] && grep -q 'filter=lfs' .gitattributes; then
+            git lfs fsck
+          fi

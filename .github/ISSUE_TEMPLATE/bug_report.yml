@@ -1,0 +1,69 @@
+name: Bug report
+description: Report a reproducible defect in a PastureStack-maintained component.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, customer data, or exploit details. Report vulnerabilities through the repository Security tab.
+  - type: input
+    id: version
+    attributes:
+      label: Version or revision
+      description: Provide the release, tag, image digest, or commit SHA.
+      placeholder: v1.6.x-pasture.1 or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Name the service, package, image, API, or workflow involved.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, architecture, container runtime, orchestrator, database, and relevant dependency versions.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest safe, repeatable reproduction.
+      placeholder: |
+        1. Configure ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized logs or evidence
+      description: Remove secrets, tokens, addresses, customer data, and other private information.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched for an existing issue.
+          required: true
+        - label: This report contains no secrets or private data.
+          required: true
+        - label: This is not a public disclosure of a security vulnerability.
+          required: true

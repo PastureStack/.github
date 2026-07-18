@@ -1,0 +1,56 @@
+name: Repository migration
+description: Track the evidence and acceptance criteria for importing an upstream repository.
+title: "[Migration]: "
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Upstream source repository
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: Proposed PastureStack repository name
+      placeholder: component-name
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Source revision
+      description: Provide the source default branch, tag, and commit SHA used for the import.
+    validations:
+      required: true
+  - type: textarea
+    id: inventory
+    attributes:
+      label: Repository inventory
+      description: Record branches, tags, releases, LFS objects, submodules, packages, images, and external dependencies.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: License and provenance
+      description: Identify the license, notices, upstream ownership, and any generated or vendored content.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Migration acceptance
+      options:
+        - label: Source URL and immutable source commit are recorded.
+          required: true
+        - label: Full history, branches, and tags were inventoried and compared.
+          required: true
+        - label: License and required notices are present in the target repository.
+          required: true
+        - label: Secrets and sensitive data were reviewed before public release.
+          required: true
+        - label: LFS objects and submodules were resolved or explicitly documented.
+          required: true
+        - label: Build and release provenance is documented.
+          required: true
