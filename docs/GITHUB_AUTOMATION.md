@@ -10,7 +10,8 @@ PastureStack uses GitHub's no-cost features for public repositories to reduce re
 - Artifacts and workflow logs are retained for 30 days.
 - Workflows from first-time and external contributors require approval.
 - Dependency graph, automatic dependency submission, Dependabot alerts, grouped security updates, secret scanning, push protection, malware alerts, and private vulnerability reporting are enabled where GitHub supports them.
-- CodeQL default setup is used where a repository has a supported language. Reviewed advanced CodeQL workflows remain authoritative where present.
+- `PastureStack-org-config-1` enforces the default security baseline, including CodeQL default setup, on repositories with a supported language.
+- `PastureStack-compatible-security` enforces the same no-cost baseline without replacing reviewed advanced CodeQL workflows or enabling CodeQL for repositories without a supported language.
 
 ## Continuous integration
 

@@ -19,7 +19,9 @@ history:
   rewrite_published_history: false
 
 security:
-  organization_configuration: PastureStack-org-config-1
+  organization_configurations:
+    default: PastureStack-org-config-1
+    advanced_codeql_or_unsupported_language: PastureStack-compatible-security
   dependabot_grouped_security_updates: true
   github_token_default: read
   external_workflow_approval: all-external-contributors
