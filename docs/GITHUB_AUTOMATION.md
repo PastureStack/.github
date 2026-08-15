@@ -12,6 +12,10 @@ PastureStack uses GitHub's no-cost features for public repositories to reduce re
 - Dependency graph, automatic dependency submission, Dependabot alerts, grouped security updates, secret scanning, push protection, malware alerts, and private vulnerability reporting are enabled where GitHub supports them.
 - `PastureStack-org-config-1` enforces the default security baseline, including CodeQL default setup, on repositories with a supported language.
 - `PastureStack-compatible-security` enforces the same no-cost baseline without replacing reviewed advanced CodeQL workflows or enabling CodeQL for repositories without a supported language.
+- Every default branch is protected against force pushes and deletion, requires linear history, and enforces resolved review conversations.
+- Pull requests may update an out-of-date branch, merge automatically after their configured requirements pass, and delete their source branch after merging.
+
+Required pull requests and status checks are added per repository only after its stable check names and compatibility path are verified. This keeps the migration baseline usable without weakening default-branch integrity.
 
 ## Continuous integration
 

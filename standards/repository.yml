@@ -5,6 +5,9 @@ repository:
   naming: lowercase-kebab-case
   preferred_visibility: public
   staging_visibility: private
+  allow_auto_merge: true
+  allow_update_branch: true
+  delete_head_branch_on_merge: true
   default_branch:
     import_strategy: preserve-source-default
     steady_state: main
@@ -38,13 +41,13 @@ actions:
   imported_workflows_initial_state: review-before-enable
 
 public_default_branch_rules:
-  pull_request_required: true
-  approving_reviews: 1
-  dismiss_stale_reviews: true
+  protected: true
+  enforce_administrators: true
+  linear_history: true
   conversation_resolution: true
   force_pushes: false
   deletions: false
-  administrator_bypass: false
+  pull_request_required: false
   required_checks: add-after-check-names-stabilize
 
 release:
