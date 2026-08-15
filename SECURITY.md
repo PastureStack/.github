@@ -8,7 +8,7 @@ Each repository must publish its own supported-version statement before making a
 
 - active migration branches receive best-effort security review;
 - historical upstream tags are preserved but unsupported; and
-- original Rancher 1.6 binaries and images remain end-of-life.
+- original upstream binaries and images remain end-of-life.
 
 ## Reporting a vulnerability
 
@@ -20,4 +20,4 @@ Maintainers will acknowledge a complete private report as soon as practical, coo
 
 ## Scope
 
-Reports about the PastureStack-maintained changes, build chain, releases, containers, and migration tooling are in scope. Vulnerabilities that affect unmodified upstream Rancher code may also need to be reported to the relevant upstream maintainer.
+Reports about the PastureStack-maintained changes, build chain, releases, containers, and migration tooling are in scope. Vulnerabilities that affect unmodified upstream code may also need to be reported to the relevant upstream maintainer.

@@ -27,7 +27,12 @@ security:
 
 actions:
   artifact_retention_days: 30
-  new_actions_pin: full-commit-sha
+  repository_policy: selected
+  github_owned_actions: true
+  verified_creator_actions: false
+  organization_reusable_workflows: PastureStack/.github@*
+  require_sha_pinning: false
+  new_external_actions_pin: full-commit-sha
   imported_workflows_initial_state: review-before-enable
 
 public_default_branch_rules:
