@@ -1,0 +1,7 @@
+{
+  "name": "PastureStack container release",
+  "description": "Publish a semantic-versioned GHCR image with GitHub build provenance and no production deployment.",
+  "iconName": "octicon package",
+  "categories": ["Docker", "Deployment"],
+  "filePatterns": ["^Dockerfile$"]
+}

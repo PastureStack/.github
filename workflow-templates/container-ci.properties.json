@@ -1,0 +1,7 @@
+{
+  "name": "PastureStack container CI",
+  "description": "Build a Dockerfile on pushes and pull requests without publishing an image.",
+  "iconName": "octicon container",
+  "categories": ["Docker", "Continuous integration"],
+  "filePatterns": ["^Dockerfile$"]
+}

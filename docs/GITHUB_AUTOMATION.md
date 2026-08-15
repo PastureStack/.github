@@ -24,6 +24,8 @@ CI does not deploy to a production control plane. Release workflows may publish 
 
 Published image tags and release versions use normal incrementing semantic versions. Digests and attestations remain machine-verifiable metadata and are not embedded in user-facing version strings.
 
+The organization repository provides an opt-in container-release workflow. It validates a numeric semantic version, publishes only that version tag to GHCR, and records GitHub build provenance. Repositories must still add their own tests, license checks, SBOM generation, vulnerability gate, and rollback acceptance before adopting the release workflow.
+
 ## Cost guardrails
 
 PastureStack uses standard GitHub-hosted runners for public repositories. Larger runners, GitHub Code Quality billing, paid private-repository security features, and automatic production deployment are outside this baseline.
