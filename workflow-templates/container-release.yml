@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   release:
-    uses: PastureStack/.github/.github/workflows/container-release.yml@main
+    uses: PastureStack/.github/.github/workflows/container-release.yml@c6073cd1c82a69a1ad6b01499c1567bfd95888d3 # pinned main
     with:
       image-name: ${{ github.event.repository.name }}
       version: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
