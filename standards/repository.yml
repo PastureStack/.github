@@ -51,6 +51,18 @@ public_default_branch_rules:
   required_checks: add-after-check-names-stabilize
 
 release:
+  version_format: numeric-semver
+  optional_v_prefix: true
+  text_qualifiers_allowed: false
+  preserve_published_tags: true
+  tag_ruleset:
+    name: Require numeric semantic version tags
+    enforcement: active
+    bypass_allowed: false
+    include:
+      - refs/tags/v*
+      - refs/tags/[0-9]*
+    regex: '^v?[0-9]+\.[0-9]+\.[0-9]+$'
   reuse_upstream_tags_for_rebuilds: false
   checksums_required: true
   source_commit_required: true
