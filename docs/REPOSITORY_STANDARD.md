@@ -90,6 +90,17 @@ Required for maintained releases:
 - identify the source commit and build inputs;
 - publish checksums for downloadable artifacts;
 - document image names, tags, and digests;
+- use only `vMAJOR.MINOR.PATCH` or `MAJOR.MINOR.PATCH` for every new
+  PastureStack-owned Git tag, GitHub Release, package version, and image tag;
+- reject brand, platform, candidate, rebuild, branch, or maintenance text in a
+  new version (for example `-pasturestack.N`, `-windows-*`, or `-rcN`);
+- express platform differences through distinct package or image names, and
+  record source boundaries and rebuild metadata in OCI labels, SBOM,
+  attestations, commits, and release notes instead of the version string;
+- preserve every existing published tag as immutable history rather than
+  deleting, moving, or reusing it;
+- enforce the `Require numeric semantic version tags` GitHub tag ruleset on
+  version-like tags (`v*` and digit-prefixed tags), without a bypass actor;
 - avoid reusing upstream release tags for rebuilt artifacts; and
 - publish compatibility and upgrade notes.
 

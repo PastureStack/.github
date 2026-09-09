@@ -12,6 +12,12 @@ PastureStack is an independent community effort to preserve, audit, and moderniz
 - A machine-readable [repository policy](standards/repository.yml) for future automation.
 - Optional workflow templates for migration integrity and Go module projects.
 
+New PastureStack release and image versions use only numeric semantic versions
+(`vMAJOR.MINOR.PATCH` or `MAJOR.MINOR.PATCH`). Brand, platform, candidate, and
+maintenance text belongs in package names and provenance metadata, not in a
+new version tag. Existing published tags remain immutable historical records;
+see the [release standard](docs/REPOSITORY_STANDARD.md#7-releases-and-packages).
+
 GitHub applies supported community health files from this repository only when a target repository does not provide its own file of the same type. Repository-specific guidance always takes precedence.
 
 ## Important limitations
