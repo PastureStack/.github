@@ -65,5 +65,22 @@ release:
     regex: '^v?[0-9]+\.[0-9]+\.[0-9]+$'
   reuse_upstream_tags_for_rebuilds: false
   checksums_required: true
+  checksum_algorithm: sha256
+  package_integrity:
+    outer_archive_and_inner_payload_are_separate: true
+    current_consumer_legacy_fallback_allowed: false
+    legacy_sha1_metadata: documented-older-consumers-only
+    shared_host_installer_manifests:
+      - SHA256SUMS
+      - SHA256SUMSSUM
+    final_candidate_consumer_verification_required: true
+    inherited_and_downloaded_assets_in_scope: true
+    negative_cases:
+      - missing-manifest
+      - sha1-only
+      - invalid-manifest
+      - modified-payload
+    fresh_registration_required_when: package-installer-chain-changed-or-gap-confirmed
+    documentation_is_not_ci_enforcement: true
   source_commit_required: true
   compatibility_notes_required: true

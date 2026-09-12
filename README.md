@@ -18,6 +18,13 @@ maintenance text belongs in package names and provenance metadata, not in a
 new version tag. Existing published tags remain immutable historical records;
 see the [release standard](docs/REPOSITORY_STANDARD.md#7-releases-and-packages).
 
+Maintained release packages use SHA256 for archive and installer payload
+integrity. The [package compatibility requirements](docs/REPOSITORY_STANDARD.md#package-integrity-and-producerconsumer-compatibility)
+also cover inherited Server assets, real consumer verification and fresh-host
+registration when that chain changes. Legacy SHA1 metadata is not a fallback
+for current installers. These documented requirements are not a claim that every
+repository's CI already enforces them.
+
 GitHub applies supported community health files from this repository only when a target repository does not provide its own file of the same type. Repository-specific guidance always takes precedence.
 
 ## Important limitations

@@ -88,7 +88,7 @@ Recommended:
 Required for maintained releases:
 
 - identify the source commit and build inputs;
-- publish checksums for downloadable artifacts;
+- publish SHA256 checksums for downloadable artifacts;
 - document image names, tags, and digests;
 - use only `vMAJOR.MINOR.PATCH` or `MAJOR.MINOR.PATCH` for every new
   PastureStack-owned Git tag, GitHub Release, package version, and image tag;
@@ -105,6 +105,42 @@ Required for maintained releases:
 - publish compatibility and upgrade notes.
 
 Package and container publication remains disabled until the repository has an approved release workflow and ownership policy.
+
+### Package integrity and producer/consumer compatibility
+
+Required when maintaining a release package or changing its installer contract:
+
+- Use SHA256 for both the outer archive and the payload integrity checks consumed
+  by the installer. A valid outer digest does not prove the contents satisfy the
+  installer contract, and checksums do not replace trusted release provenance.
+- Packages consumed by the shared host installer must contain a single package
+  root with `SHA256SUMS` and `SHA256SUMSSUM`. Verify the payload and manifest with
+  the consumer's exact path and working-directory semantics, using safe extraction
+  confined to the isolated package root. SHA256 values are 64 hexadecimal digits.
+- Current installers must reject missing, malformed or mismatching SHA256 data;
+  never fall back to SHA1 or MD5. Legacy SHA1 manifests may be additional metadata
+  only for documented older consumers; they do not satisfy current acceptance.
+  This does not require rewriting Git object identifiers or immutable history.
+- Trace the actual producer release through Server's final image, inherited
+  archives, advertised download endpoint and consumer verifier. Updating source
+  packaging alone does not update a pinned or inherited release asset. Keep the
+  affected README, compatibility notes and release coordinates aligned.
+- Test the final candidate archive with the actual consumer verifier: accept the
+  valid package; reject missing manifests, SHA1-only metadata, invalid manifests
+  and modified payloads. Source markers, filename checks, reconstructed fixtures
+  and outer checksums alone are not sufficient evidence.
+- Changes to this chain, or a confirmed gap in it, require download, installation
+  and registration in an isolated fresh-host environment without an existing
+  package cache. Existing-host workloads, `/ping` and unrelated feature tests do
+  not prove registration. Check direct sibling packages sharing that verifier;
+  do not rerun registration for unrelated text or layout changes.
+- Publish corrected bytes under a new numeric version; never replace a published
+  asset or ask operators to manufacture missing checksum files. Record a known
+  incompatibility as unresolved even when other feature tests passed.
+
+The machine-readable policy records these requirements, but does not itself
+install or enforce a CI check. Automatic enforcement must be verified in each
+affected release workflow before being claimed.
 
 ## 8. Migration acceptance
 
